@@ -1,13 +1,37 @@
 # thinkbook-14s-yoga
-Some additional configuration steps and configs neccessary to run linux on the lenovo thinkbook 14s yoga perfectly.
+Some additional configuration steps and configs neccessary to run gentoo linux on the lenovo thinkbook 14s yoga perfectly.
 
 ## System
 
 Gentoo.
 
-## cooling problems
+## cooling / thermal problems
 
 I have regocnized, that the thinkbook gets very hot while I've compiled my entire system.
+
+I've used the thermald-service to handle this problem. To use this service, you have to enable some kernel options, according to the gentoo wiki (Enable additional drivers: https://wiki.gentoo.org/wiki/Power_management/Guide/de#Enabling_additional_drivers):
+
+```
+Device Drivers --->
+  -*- Generic Thermal sysfs driver --->
+    (0)   Emergency poweroff delay in milli-seconds                                                                              
+    [*]   Expose thermal sensors as hwmon device                                                                                
+    -*-   Enable writable trip points                                                                                          
+          Default Thermal governor (step_wise)  --->                                                                           
+    [*]   Fair-share thermal governor                                                                                           
+    -*-   Step_wise thermal governor                                                                                            
+    -*-   Bang Bang thermal governor                                                                                            
+    -*-   User_space thermal governor                                                                                           
+    [ ]   Thermal emulation mode support
+    [*]   Power allocator thermal governor   
+    <M>   Intel PowerClamp idle injection driver
+    <M>   X86 package temperature thermal driver
+    < >   Intel SoCs DTS thermal driver                                                                                          
+          ACPI INT340X thermal drivers  --->                                                                                     
+             <M> ACPI INT340X thermal drivers
+    <M>   Intel PCH Thermal Reporting Driver
+```
+
 First, install thermald
 ```bash
 emerge -va sys-power/thermald
@@ -21,7 +45,7 @@ cp -v thinkbook-14s-yoga/etc/thermald/thermal-cpu-cdev-order.xml /etc/thermald/
 ...and last but not least, you should enable the service
 ```bash
 # for systemd users:
-root # systemctl enable --now thermald
+systemctl enable --now thermald
 # for openrc users:
-root # rc-config add thermald
+rc-config add thermald
 ```
