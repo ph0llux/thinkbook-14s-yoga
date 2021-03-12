@@ -1,10 +1,6 @@
 # thinkbook-14s-yoga
 Some additional configuration steps and configs neccessary to run gentoo linux on the lenovo thinkbook 14s yoga perfectly.
 
-## System
-
-Gentoo.
-
 ## cooling / thermal problems
 
 I have regocnized, that the thinkbook gets very hot while I've compiled my entire system.
@@ -32,11 +28,11 @@ Device Drivers --->
     <M>   Intel PCH Thermal Reporting Driver
 ```
 
-First, install thermald
+now, install thermald
 ```bash
 emerge -va sys-power/thermald
 ```
-second, you should add the following config files to your /etc-folder
+after this, you should add the following config files to your /etc-folder
 ```bash
 git clone https://github.com/ph0llux/thinkbook-14s-yoga
 cp -v thinkbook-14s-yoga/etc/thermald/thermal-conf.xml /etc/thermald/
@@ -49,3 +45,31 @@ systemctl enable --now thermald
 # for openrc users:
 rc-config add thermald
 ```
+
+## no audio output
+
+for audio output you need ```>=sys-firmware/sof-firmware-1.6.1```.
+
+As time of writing this, the package is available on the portage tree, but only in version 1.5.1.
+You can build your own ebuild and a local repository to install sof-firmware.
+I've copied the ebuild of =sof-firmware-1.5.1 from gentoo-tree and renamed to sof-firmware-1.6.1 in my own repository to handle this.
+
+## thunderbolt
+
+first, install ```sys-apps/bolt```:
+```bash
+emerge -va sys-apps/bolt
+```
+
+second, activate USB4 in kernel config.
+
+now everything should be fine.
+
+## touchscreen
+
+you should install libwacom:
+```bash
+emerge -va dev-libs/libwacom
+```
+
+touchscreen works fine with linux >=5.10.
