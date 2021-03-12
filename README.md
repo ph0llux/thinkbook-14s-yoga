@@ -1,5 +1,5 @@
 # thinkbook-14s-yoga
-Some additional configuration steps and configs neccessary to run gentoo linux on the lenovo thinkbook 14s yoga perfectly.
+Some additional configuration steps and configs neccessary to run gentoo linux on the Lenovo Thinkbook 14s yoga perfectly.
 
 ## cooling / thermal problems
 
