@@ -54,6 +54,12 @@ As time of writing this, the package is available on the portage tree, but only 
 You can build your own ebuild and a local repository to install sof-firmware.
 I've copied the ebuild of =sof-firmware-1.5.1 from gentoo-tree and renamed to sof-firmware-1.6.1 in my own repository to handle this.
 
+Additionally (if you're using gnome or a similar DE), you should switch from pulseaudio to pipewire.
+You can do this by adding the useflag ```screencast``` globally and reflecting a world update by running ```emerge -vauDN @world```.
+Now, you have to start the pipewire service at the user-session and replace the pulseaudio service. You can find the appropriate commands for your init system (systemd, openRC, ...) here: https://wiki.gentoo.org/wiki/PipeWire.
+
+There are some issue's with pulseaudio (e.g. no sound at speaker), which are not present with pipewire.
+
 ## thunderbolt
 
 first, install ```sys-apps/bolt```:
