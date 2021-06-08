@@ -1,6 +1,15 @@
 # thinkbook-14s-yoga
 Some additional configuration steps and configs neccessary to run gentoo linux on the Lenovo Thinkbook 14s yoga perfectly.
 
+## a note to BIOS update 2.0
+
+Since march 2021, there is a Bios-update to BIOS version 2.0 available. There come some issues with this update, as you can read in the [official user-to-user lenovo forum](https://forums.lenovo.com/t5/ThinkBook-Notebooks/14s-Yoga-ITL-BIOS-2-00-Update-BSOD-Nightmare/m-p/5072720).
+
+With the BIOS V2.0 the linux system will freeze randomly (after a minute, or after two days, or [...]). On windows, you got a bluescreen with the error message WHEA_UNCORRECTABLE_ERROR.
+As you can see: you shouldn't update to V2.0. But if you stay on version 1.0.7 then you have to live with some theoretical security vulnerabilities in the processor microcode (I'm not sure if they are really that relevant in practice, though).
+
+At time of writing this (08-06-2021) the "bios update to version 2.0" is not fixed by lenovo.
+
 ## cooling / thermal problems
 
 I have regocnized, that the thinkbook gets very hot while I've compiled my entire system.
