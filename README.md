@@ -57,11 +57,11 @@ rc-config add thermald
 
 ## no audio output
 
-for audio output you need ```>=sys-firmware/sof-firmware-1.6.1```.
-
-As time of writing this, the package is available on the portage tree, but only in version 1.5.1.
-You can build your own ebuild and a local repository to install sof-firmware.
-I've copied the ebuild of =sof-firmware-1.5.1 from gentoo-tree and renamed to sof-firmware-1.6.1 in my own repository to handle this.
+for audio output you need ```=sys-firmware/sof-firmware-1.6.1```.
+The newer firmware-version 1.9.3 won't run perfectly with the thinkbook. You should mask the version:
+```bash
+echo ">sys-firmware/sof-firmware-1.6.1" > /etc/portage/package.mask/sof-firmware
+```
 
 Additionally (if you're using gnome or a similar DE), you should switch from pulseaudio to pipewire.
 You can do this by adding the useflag ```screencast``` globally and reflecting a world update by running ```emerge -vauDN @world```.
